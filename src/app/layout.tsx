@@ -3,6 +3,7 @@ import { Playfair_Display, Poppins, Yellowtail } from "next/font/google";
 import { BookingProvider } from "@/components/booking/BookingContext";
 import BookingModal from "@/components/booking/BookingModal";
 import "./globals.css";
+import FloatingContact from "@/components/FloatingContact";
 
 const playfair = Playfair_Display({
   variable: "--font-playfair",
@@ -40,6 +41,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           {children}
           <BookingModal />
         </BookingProvider>
+        <FloatingContact />
       </body>
     </html>
   );
