@@ -1,0 +1,57 @@
+@import "tailwindcss";
+
+:root {
+  --color-cream: #f9f4ec;
+  --color-cream-deep: #f1e9db;
+  --color-ink: #241d17;
+  --color-charcoal: #17120e;
+  --color-charcoal-soft: #241c16;
+  --color-muted: #7a6f63;
+  --color-gold: #c19248;
+  --color-gold-soft: #e6cb9a;
+  --color-gold-deep: #9c7433;
+  --color-line: rgba(36, 29, 23, 0.1);
+  --color-line-dark: rgba(249, 244, 236, 0.14);
+}
+
+@theme inline {
+  --color-cream: var(--color-cream);
+  --color-cream-deep: var(--color-cream-deep);
+  --color-ink: var(--color-ink);
+  --color-charcoal: var(--color-charcoal);
+  --color-charcoal-soft: var(--color-charcoal-soft);
+  --color-muted: var(--color-muted);
+  --color-gold: var(--color-gold);
+  --color-gold-soft: var(--color-gold-soft);
+  --color-gold-deep: var(--color-gold-deep);
+  --color-line: var(--color-line);
+  --color-line-dark: var(--color-line-dark);
+
+  --font-display: var(--font-playfair);
+  --font-script: var(--font-yellowtail);
+  --font-sans: var(--font-poppins);
+}
+
+body {
+  background: var(--color-cream);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+}
+
+::selection {
+  background: var(--color-gold);
+  color: var(--color-charcoal);
+}
+
+.tracking-label {
+  letter-spacing: 0.22em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
