@@ -1,3 +1,4 @@
+
 import type { Metadata } from "next";
 import Image from "next/image";
 import TopBar from "@/components/TopBar";
@@ -15,10 +16,26 @@ export const metadata: Metadata = {
 };
 
 const BENEFITS = [
-  { icon: Crown, title: "Premium Products", text: "Only the best for you" },
-  { icon: ShieldCheck, title: "Hygienic & Safe", text: "A clean, safe environment" },
-  { icon: Sparkles, title: "Expert Stylists", text: "Trained professionals" },
-  { icon: Heart, title: "Personalized Care", text: "Because you're unique" },
+  {
+    icon: Crown,
+    title: "Premium Products",
+    text: "Only the best for you",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Hygienic & Safe",
+    text: "A clean, safe environment",
+  },
+  {
+    icon: Sparkles,
+    title: "Expert Stylists",
+    text: "Trained professionals",
+  },
+  {
+    icon: Heart,
+    title: "Personalized Care",
+    text: "Because you're unique",
+  },
 ];
 
 export default function ServicesPage() {
@@ -26,7 +43,9 @@ export default function ServicesPage() {
     <>
       <TopBar />
       <Navbar />
+
       <main>
+        {/* Hero */}
         <PageHero
           eyebrow="OUR SERVICES"
           titleLine1="Beauty Care"
@@ -36,6 +55,7 @@ export default function ServicesPage() {
           scriptText={"Self Care\nLooks Good\nOn You"}
         />
 
+        {/* Services */}
         <section className="bg-cream py-16 sm:py-20 px-5 sm:px-6 lg:px-12">
           <div className="max-w-[1400px] mx-auto">
             <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10">
@@ -43,34 +63,62 @@ export default function ServicesPage() {
                 <p className="text-[11px] tracking-label text-gold-deep font-semibold mb-3">
                   EXPLORE OUR SERVICES
                 </p>
+
                 <h2 className="font-display text-3xl sm:text-4xl text-ink">
                   Find the Perfect Service for You
                 </h2>
               </div>
+
               <p className="text-[13px] text-muted max-w-md">
-                Choose from a wide range of professional services designed to make you look
-                good, feel better and be you.
+                Choose from a wide range of professional services designed to
+                make you look good, feel better and be you.
               </p>
             </div>
 
-            <ServicesExplorer />
+            {/* 
+              ServicesExplorer ke andar cards ka actual grid hai.
+              Agar us component mein grid-cols-3/4/6 laga hai,
+              to yahan wrapper se 2-column force nahi hoga.
+            */}
+            <div className="[&>div]:grid [&>div]:grid-cols-1 sm:[&>div]:grid-cols-2 [&>div]:gap-5">
+              <ServicesExplorer />
+            </div>
           </div>
         </section>
 
+        {/* Benefits */}
         <section className="bg-cream-deep border-y border-line py-10 px-6 lg:px-12">
           <div className="max-w-[1400px] mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
-            {BENEFITS.map((b) => (
-              <div key={b.title} className="flex items-center gap-3">
-                <b.icon size={20} strokeWidth={1.6} className="text-gold-deep shrink-0" />
-                <div>
-                  <p className="text-[13px] font-semibold text-ink leading-tight">{b.title}</p>
-                  <p className="text-[11px] text-muted mt-0.5">{b.text}</p>
+            {BENEFITS.map((benefit) => {
+              const Icon = benefit.icon;
+
+              return (
+                <div
+                  key={benefit.title}
+                  className="flex items-center gap-3"
+                >
+                  <Icon
+                    size={20}
+                    strokeWidth={1.6}
+                    className="text-gold-deep shrink-0"
+                  />
+
+                  <div>
+                    <p className="text-[13px] font-semibold text-ink leading-tight">
+                      {benefit.title}
+                    </p>
+
+                    <p className="text-[11px] text-muted mt-0.5">
+                      {benefit.text}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </section>
 
+        {/* Consultation CTA */}
         <section className="bg-cream py-16 sm:py-20 px-5 sm:px-6 lg:px-12">
           <div className="max-w-[1400px] mx-auto">
             <div className="relative overflow-hidden rounded-3xl bg-cream-deep grid lg:grid-cols-[1.1fr_1fr] items-stretch">
@@ -78,12 +126,15 @@ export default function ServicesPage() {
                 <h3 className="font-display text-3xl sm:text-4xl text-ink mb-4">
                   Not Sure What You Need?
                 </h3>
+
                 <p className="text-[14px] text-muted leading-relaxed mb-7 max-w-md">
-                  Get a free consultation with our experts and let us suggest the best services
-                  for you.
+                  Get a free consultation with our experts and let us suggest
+                  the best services for you.
                 </p>
+
                 <ConsultationCTA />
               </div>
+
               <div className="relative min-h-[260px]">
                 <Image
                   src="https://picsum.photos/seed/sharma-consult/900/700"
@@ -97,6 +148,7 @@ export default function ServicesPage() {
           </div>
         </section>
       </main>
+
       <Footer />
     </>
   );
