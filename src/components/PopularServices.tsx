@@ -1,5 +1,5 @@
 import Link from "next/link";
-import ServiceCard from "@/components/Card/ServicePageCard";
+import ServiceCard from "@/components/Card/ServiceCard";
 import { SERVICES } from "@/lib/data";
 
 const FEATURED = SERVICES.slice(0, 6);
@@ -19,7 +19,7 @@ export default function PopularServices() {
           </div>
 
           <Link
-            href="/ServicePageCard"
+            href="/services"
             className="hidden sm:inline-flex items-center gap-2 text-[13px] font-semibold text-ink/80 hover:text-gold-deep transition-colors shrink-0"
           >
             View All Services <span aria-hidden>→</span>
@@ -33,7 +33,7 @@ export default function PopularServices() {
         </div>
 
         <Link
-          href="/ServicePageCard"
+          href="/services"
           className="sm:hidden mt-6 inline-flex items-center gap-2 text-[13px] font-semibold text-ink/80"
         >
           View All Services <span aria-hidden>→</span>

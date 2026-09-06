@@ -1,13 +1,21 @@
-
 import type { Metadata } from "next";
 import Image from "next/image";
+
 import TopBar from "@/components/TopBar";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
-import ServicesExplorer from "@/components/ServicesExplorer";
+import ServicePageCard from "@/components/Card/ServicePageCard";
 import ConsultationCTA from "@/components/ConsultationCTA";
-import { Crown, ShieldCheck, Sparkles, Heart } from "lucide-react";
+
+import { SERVICES } from "@/lib/data";
+
+import {
+  Crown,
+  ShieldCheck,
+  Sparkles,
+  Heart,
+} from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Services | Sharma's Salon",
@@ -42,10 +50,13 @@ export default function ServicesPage() {
   return (
     <>
       <TopBar />
+
       <Navbar />
 
       <main>
-        {/* Hero */}
+        {/* =====================================================
+            HERO
+        ====================================================== */}
         <PageHero
           eyebrow="OUR SERVICES"
           titleLine1="Beauty Care"
@@ -55,40 +66,54 @@ export default function ServicesPage() {
           scriptText={"Self Care\nLooks Good\nOn You"}
         />
 
-        {/* Services */}
-        <section className="bg-cream py-16 sm:py-20 px-5 sm:px-6 lg:px-12">
+        {/* =====================================================
+            SERVICES
+        ====================================================== */}
+        <section className="bg-cream py-16 sm:py-20 lg:py-24 px-5 sm:px-6 lg:px-12">
           <div className="max-w-[1400px] mx-auto">
-            <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10">
+
+            {/* Section Header */}
+            <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10 lg:mb-12">
               <div>
                 <p className="text-[11px] tracking-label text-gold-deep font-semibold mb-3">
                   EXPLORE OUR SERVICES
                 </p>
 
-                <h2 className="font-display text-3xl sm:text-4xl text-ink">
+                <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl text-ink">
                   Find the Perfect Service for You
                 </h2>
               </div>
 
-              <p className="text-[13px] text-muted max-w-md">
+              <p className="text-[13px] sm:text-[14px] text-muted leading-relaxed max-w-md">
                 Choose from a wide range of professional services designed to
                 make you look good, feel better and be you.
               </p>
             </div>
 
-            {/* 
-              ServicesExplorer ke andar cards ka actual grid hai.
-              Agar us component mein grid-cols-3/4/6 laga hai,
-              to yahan wrapper se 2-column force nahi hoga.
-            */}
-            <div className="[&>div]:grid [&>div]:grid-cols-1 sm:[&>div]:grid-cols-2 [&>div]:gap-5">
-              <ServicesExplorer />
+            {/* =================================================
+                SERVICE CARDS
+
+                Mobile  : 2 cards
+                Tablet  : 3 cards
+                Laptop  : 4 cards
+            ================================================== */}
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-5 lg:gap-6 items-stretch">
+              {SERVICES.map((service) => (
+                <ServicePageCard
+                  key={service.id}
+                  service={service}
+                />
+              ))}
             </div>
           </div>
         </section>
 
-        {/* Benefits */}
-        <section className="bg-cream-deep border-y border-line py-10 px-6 lg:px-12">
-          <div className="max-w-[1400px] mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
+        {/* =====================================================
+            BENEFITS
+        ====================================================== */}
+        <section className="bg-cream-deep border-y border-line py-10 sm:py-12 px-5 sm:px-6 lg:px-12">
+          <div className="max-w-[1400px] mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-10">
+
             {BENEFITS.map((benefit) => {
               const Icon = benefit.icon;
 
@@ -115,15 +140,26 @@ export default function ServicesPage() {
                 </div>
               );
             })}
+
           </div>
         </section>
 
-        {/* Consultation CTA */}
-        <section className="bg-cream py-16 sm:py-20 px-5 sm:px-6 lg:px-12">
+        {/* =====================================================
+            CONSULTATION CTA
+        ====================================================== */}
+        <section className="bg-cream py-16 sm:py-20 lg:py-24 px-5 sm:px-6 lg:px-12">
           <div className="max-w-[1400px] mx-auto">
+
             <div className="relative overflow-hidden rounded-3xl bg-cream-deep grid lg:grid-cols-[1.1fr_1fr] items-stretch">
-              <div className="p-8 sm:p-12 flex flex-col justify-center">
-                <h3 className="font-display text-3xl sm:text-4xl text-ink mb-4">
+
+              {/* Content */}
+              <div className="p-8 sm:p-12 lg:p-16 flex flex-col justify-center">
+
+                <p className="text-[11px] tracking-label text-gold-deep font-semibold mb-3">
+                  PERSONALIZED BEAUTY
+                </p>
+
+                <h3 className="font-display text-3xl sm:text-4xl lg:text-5xl text-ink mb-4">
                   Not Sure What You Need?
                 </h3>
 
@@ -133,9 +169,11 @@ export default function ServicesPage() {
                 </p>
 
                 <ConsultationCTA />
+
               </div>
 
-              <div className="relative min-h-[260px]">
+              {/* Image */}
+              <div className="relative min-h-[280px] lg:min-h-[420px]">
                 <Image
                   src="https://picsum.photos/seed/sharma-consult/900/700"
                   alt="Consultation with a stylist"
@@ -144,6 +182,7 @@ export default function ServicesPage() {
                   className="object-cover"
                 />
               </div>
+
             </div>
           </div>
         </section>
